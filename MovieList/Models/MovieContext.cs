@@ -9,10 +9,19 @@ namespace MovieList.Models
         { }
 
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Genre> Genres { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<Genre>().HasData(
+                 new Genre { GenreId = "A", Name = "Action" },
+                 new Genre { GenreId = "C", Name = "Comedy" },
+                 new Genre { GenreId = "D", Name = "Drama" },
+                 new Genre { GenreId = "H", Name = "Horror" },
+                 new Genre { GenreId = "M", Name = "Musical" },
+                 new Genre { GenreId = "R", Name = "RomCom" },
+                 new Genre { GenreId = "S", Name = "SciFi" }
+             );
 
             modelBuilder.Entity<Movie>().HasData(
                 new Movie
@@ -21,6 +30,7 @@ namespace MovieList.Models
                     Name = "Casablanca",
                     Year = 1942,
                     Rating = 5,
+                    GenreId = "D"
                 },
                 new Movie
                 {
@@ -28,6 +38,7 @@ namespace MovieList.Models
                     Name = "Wonder Woman",
                     Year = 2017,
                     Rating = 3,
+                    GenreId = "A"
                 },
                 new Movie
                 {
@@ -35,6 +46,7 @@ namespace MovieList.Models
                     Name = "Moonstruck",
                     Year = 1988,
                     Rating = 4,
+                    GenreId = "R"
                 }
             );
         }
